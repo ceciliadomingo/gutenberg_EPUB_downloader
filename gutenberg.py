@@ -19,7 +19,6 @@ browser.get('https://www.gutenberg.org/')
 def getEPUBgutenberg(search_term):
     searchbar = browser.find_element_by_xpath('//*[@id="menu-book-search"]')
     searchbar.send_keys(search_term)
-    #searchbar.submit() #Did not work, this web requires using button
     submit_button = browser.find_element_by_name('submit_search')
     submit_button.click()
 
@@ -32,10 +31,6 @@ def getEPUBgutenberg(search_term):
 
         #........TRY FINDING EPUB WITH PICTURES........:
         try:
-            #I use xpath to look for section of Download EPUB with pics
-            #a are links, <a href="link.com" type="blahblah")
-            #I search the text part <a href="bla.com">text</a>
-            #using [contains(text(),'my text')]
             download_epub_withpics = browser.find_element_by_xpath("// a[contains(text(),'EPUB (with images)')]")
             download_epub_withpics.click()
             time.sleep(15) #Allow time for download
